@@ -1,10 +1,13 @@
 services:
   mysql:
-    image: 'mysql:latest'
+    image: mysql:8.4.5
+    container_name: restaurant-diary-mysql
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: Restaurant
+      MYSQL_USER: rstuser
+      MYSQL_PASSWORD: password
     ports:
-      - '3306'
+      - "3306:3306"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
